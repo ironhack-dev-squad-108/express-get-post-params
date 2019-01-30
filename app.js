@@ -1,9 +1,12 @@
 const express = require('express')
 const path = require('path')
+const bodyParser = require('body-parser') // NEW
 
 const app = express()
 
-app.set('views', path.join(__dirname, 'views'));
+app.use(bodyParser.urlencoded({ extended: true })) // NEW
+
+app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'hbs');
 
 // Route: GET http://localhost:3000/
@@ -11,8 +14,15 @@ app.get('/', function (req, res) {
   res.render("index")
 })
 
-app.get('/login', function (req, res) {
-  res.render("secret")
+// NEW: 'get'=>'post'
+app.post('/login', function (req, res) {
+  console.log("req.body = ", req.body) // NEW
+  if (req.body.username === 'maxence' && req.body.password === 'chartreuse') {
+    res.render("secret")
+  }
+  else {
+    res.redirect('/') // NEW: redirects the user to a new page: GET /
+  }
 })
 
 
