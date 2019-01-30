@@ -1,0 +1,17 @@
+{{#if nbOfDays}}
+  <h1>{{greetings}}, you've searched for {{nbOfDays}} days</h1>
+{{else}} {{!-- Else executed if nbOfDays is NaN (falsy)--}}
+  <h1>{{greetings}}</h1>
+{{/if}}
+
+{{!-- The form will redirect the user to the page GET /search --}}
+<form action="/search" method="GET">
+  <label for="">City</label>
+  <input type="text" name="city" id=""><br>
+  <label for="">Start-Date</label>
+  <input type="date" name="start-date" id=""><br>
+  <label for="">End-Date</label>
+  <input type="date" name="end-date" id=""><br>
+  <button type="submit">SEARCH</button>
+</form>
+
